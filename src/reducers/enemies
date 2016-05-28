@@ -1,0 +1,10 @@
+const enemies = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_ENEMY':
+      return [...state, action.enemy]
+    default:
+    return state
+  }
+}
+
+module.exports = enemies

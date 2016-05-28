@@ -1,0 +1,14 @@
+//reducer to change position
+const position = (state = [0,0], action) => {
+  switch (action.type) {
+    case 'POSITION_ADD':
+      return [
+        state[0] + action.vector[0],
+        state[1] + action.vector[1]
+      ]
+    default:
+    return state
+  }
+}
+
+module.exports = position
