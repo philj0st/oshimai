@@ -2,24 +2,35 @@ import expect from 'expect'
 import createStore from './store'
 import render from './render'
 import combineReducers from './combineReducers'
-import player from './reducers/player'
+import players from './reducers/players'
 import position from './reducers/position'
-import enemies from './reducers/enemies'
 import bullets from './reducers/bullets'
 
 
 let rootReducer = combineReducers({
-  player,
-  enemies,
+  players,
   bullets
 })
 
 var store = createStore(rootReducer)
 
 const init = () => {
+  // TODO: move to render.js ??
   let canvas = document.getElementById('canvas')
   let ctx = canvas.getContext('2d')
   let size = { x: canvas.width, y: canvas.height}
+
+  store.dispatch({
+    type: 'PLAYER_ADD',
+    player: {
+      //default player
+      size: {x : 20, y: 20},
+      radius:20,
+      // TODO: replace hardcoded CANVAS_SIZE
+      position: {x: 150, y:300-40},
+      score: 0
+    }
+  })
 
   let update = (state) => {
     //game logic like user input goes here
@@ -31,30 +42,31 @@ const init = () => {
     if (keyState['39']) {
       store.dispatch({
         type: 'PLAYER_MOVE',
-        vector: [1, 0]
+        vector: {x:1, y:0},
+        playerId: 0
       })
     }
     if (keyState['37']) {
       store.dispatch({
         type: 'PLAYER_MOVE',
-        vector: [-1, 0]
+        vector: {x:-1, y:0},
+        playerId: 0
       })
     }
     //shoot on 'space' press
     if (keyState['32']) {
-      let x = state.player.position[0]
-      let y = state.player.position[1] - state.player.size.y/2
+      let x = state.players[0].position.x
+      let y = state.players[0].position.y - state.players[0].size.y/2
       store.dispatch({
-        type: 'ADD_BULLET',
+        type: 'BULLET_ADD',
         bullet: {
-          position: [x,y],
-          velocity: [0,-1],
+          position: {x, y},
+          velocity: {x:0, y:-1},
           size: {x:4, y:8},
-          origin: 'player'
+          playerId: 0
         }
       })
     }
-
   }
 
   let tick = () => {

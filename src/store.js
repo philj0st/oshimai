@@ -5,8 +5,8 @@ const createStore = (reducer) => {
   const getState = () => state
   const dispatch = (action) => {
     state = reducer(state, action)
-    // console.log('action', action)
-    // console.log('state', state)
+    console.log('action', action)
+    console.log('state', state)
     //call each listener the store has updated
     listeners.forEach(listener => listener())
   }

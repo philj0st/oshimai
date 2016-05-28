@@ -1,14 +1,14 @@
 import position from './position'
 
 // TODO: hardcoded CANVAS_SIZE. got to find a good solution to share these constats between mpdules
-const isWithinBoundries = position => position[0] >= 0 &&
-                                      position[0] <= 300 &&
-                                      position[1] >= 0 &&
-                                      position[1] <= 300
+const isWithinBoundries = position => position.x >= 0 &&
+                                      position.x <= 300 &&
+                                      position.y >= 0 &&
+                                      position.y <= 300
 
 const bullets = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_BULLET':
+    case 'BULLET_ADD':
       return [...state, action.bullet]
     case 'UPDATE_BULLETS':
       return state
