@@ -1,10 +1,28 @@
 //tell the renderer how to draw a player
+// const drawPlayer = (screen, player) => {
+//   screen.fillRect(
+//     player.position.x - player.size.x / 2,
+//     player.position.y - player.size.y / 2,
+//     player.size.x,
+//     player.size.y)
+// }
 const drawPlayer = (screen, player) => {
-  screen.fillRect(
-    player.position.x - player.size.x / 2,
-    player.position.y - player.size.y / 2,
-    player.size.x,
-    player.size.y)
+      let { radius } = player
+      let { x, y } = player.position
+      let startAngle = 1.3 * Math.PI;
+      let endAngle = 1.7 * Math.PI;
+      let counterClockwise = true;
+
+      screen.beginPath();
+      screen.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+      screen.lineWidth = 4;
+
+      // line color
+      screen.strokeStyle = 'red';
+      screen.stroke()
+      screen.beginPath()
+      screen.arc(x, y, radius, 0, Math.PI*2, true)
+      screen.fill()
 }
 
 const drawBullet = (screen, bullet) => {

@@ -9,13 +9,13 @@ position: [15,30] vs position: {x:15, y:30} vs victor.js
 #### Roadmap
 implement multiplayer with circles on canvas then replace renderer with pixi.js sprites and keep circles as hitboxes.
 
-- circles on canvas
-- revamp movement with rotation
-- shoot sideways
-- have multiple player logic
-- local multiplayer
-- WebRTC multiplayer
-- pixi.js sprites
+- [x] revamp player datastructure to support multiple players
+- [x] circles on canvas
+- [] revamp movement with rotation
+- [] shoot sideways
+- [] local multiplayer
+- [] WebRTC multiplayer
+- [] pixi.js sprites
 
 #### ideas for future implementations
 - WebRTC (polyfill WebSockets)
