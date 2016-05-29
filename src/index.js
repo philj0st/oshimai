@@ -14,6 +14,14 @@ let rootReducer = combineReducers({
 
 var store = createStore(rootReducer)
 
+const movePlayer = (playerId, vector) => {
+  store.dispatch({
+    type: 'PLAYER_MOVE',
+    vector,
+    playerId
+  })
+}
+
 const init = () => {
   // TODO: move to render.js ??
   let canvas = document.getElementById('canvas')
@@ -31,6 +39,17 @@ const init = () => {
       score: 0
     }
   })
+  store.dispatch({
+    type: 'PLAYER_ADD',
+    player: {
+      //default player
+      size: {x : 20, y: 20},
+      radius:10,
+      // TODO: replace hardcoded CANVAS_SIZE
+      position: {x: 120, y:300-40},
+      score: 0
+    }
+  })
 
   let update = (state) => {
     //game logic like user input goes here
@@ -38,20 +57,18 @@ const init = () => {
     store.dispatch({
       type: 'UPDATE_BULLETS'
     })
-
+    // left and right for player 0
     if (keyState['39']) {
-      store.dispatch({
-        type: 'PLAYER_MOVE',
-        vector: {x:1, y:0},
-        playerId: 0
-      })
+      movePlayer(0, {x:1, y:0})
     }
     if (keyState['37']) {
-      store.dispatch({
-        type: 'PLAYER_MOVE',
-        vector: {x:-1, y:0},
-        playerId: 0
-      })
+      movePlayer(0, {x:-1, y:0})
+    }
+    if (keyState['68']) {
+      movePlayer(1, {x:1, y:0})
+    }
+    if (keyState['65']) {
+      movePlayer(1, {x:-1, y:0})
     }
     //shoot on 'space' press
     if (keyState['32']) {
@@ -79,6 +96,7 @@ const init = () => {
   var keyState = {};
   window.addEventListener('keydown', e => keyState[e.keyCode] = true)
   window.addEventListener('keyup', e => keyState[e.keyCode] = false)
+  window.addEventListener('keydown', e => console.log(e.keyCode))
 
   console.log('initialized')
   return {
