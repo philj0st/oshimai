@@ -6,6 +6,7 @@ const player = (state = [], action) => {
       return [...state, action.player]
 
     case 'PLAYER_MOVE':
+    // TODO: check for collision in here and only move if next state is not collioding. could also happen during rowing force application
       let { playerId } = action
       // get a new state of a position
       let newPosition = position(state[playerId].position, {

@@ -5,7 +5,7 @@
   "main": "move.js",
   "scripts": {
     "start": "webpack-dev-server && chromium-browser http://localhost:8080",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/*"
   },
   "author": "",
   "license": "ISC",

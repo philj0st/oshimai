@@ -34,3 +34,4 @@ const vector = (vector = {x:0, y:0}, action) => {
       return vector
   }
 }
+ module.exports = vector
