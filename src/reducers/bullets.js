@@ -14,15 +14,15 @@ const bullets = (state = [], action) => {
       return state
       //only return bullets which havent left the canvas
       .filter(b => isWithinBoundries(b.position))
-      //add their position and velocity
+      //add their position and momentum
       .map(b => {
         let vectorAddAction = {
           type: 'VECTOR_ADD',
-          vector: b.velocity
+          vector: b.momentum
         }
         return {
           ...b,
-          // add position and velocity vectors
+          // add position and momentum vectors
           position: vector(b.position, vectorAddAction)
         }
       })
