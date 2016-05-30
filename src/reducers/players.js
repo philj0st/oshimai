@@ -35,8 +35,10 @@ const player = (state = [], action) => {
         }
       })
 
-    case 'PLAYER_SET_MOMENTUM':
+    case 'PLAYER_ADD_MOMENTUM':
       let { playerIndex, momentum } = action
+      // add momentum to the already existing one
+      let resultingMomentum = addVec(state[playerIndex].momentum, momentum)
       // get a new state of a position
       return [
         // spread over the left part of the array
@@ -46,7 +48,7 @@ const player = (state = [], action) => {
           // copy all the properties from the previous state
           ...state[playerIndex],
           // then override the momentum
-          momentum
+          momentum: resultingMomentum
         },
         // spread over the right part of the array
         ...state.slice(playerIndex +1)

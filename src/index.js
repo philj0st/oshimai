@@ -15,7 +15,7 @@ var store = createStore(rootReducer)
 
 const setPlayerMomentum = (playerIndex, momentum) => {
   store.dispatch({
-    type: 'PLAYER_SET_MOMENTUM',
+    type: 'PLAYER_ADD_MOMENTUM',
     momentum,
     playerIndex
   })
