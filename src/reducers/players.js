@@ -1,4 +1,4 @@
-import position from './position'
+import vector from './vector'
 
 const player = (state = [], action) => {
   switch (action.type) {
@@ -9,8 +9,8 @@ const player = (state = [], action) => {
     // TODO: check for collision in here and only move if next state is not collioding. could also happen during rowing force application
       let { playerId } = action
       // get a new state of a position
-      let newPosition = position(state[playerId].position, {
-        type: 'POSITION_ADD',
+      let newPosition = vector(state[playerId].position, {
+        type: 'VECTOR_ADD',
         vector: action.vector
       })
       return [

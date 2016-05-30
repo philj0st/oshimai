@@ -12,8 +12,9 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - [x] revamp player datastructure to support multiple players
 - [x] circles on canvas
 - [] revamp movement with rotation
+- [] use rounded values so rotateVecByDeg([1,0], 90) doesn't result in [6.123233995736766e-17, 1]. - or find another datastructure that is more performant.
 - [] shoot sideways
-- [] local multiplayer
+- [x] local multiplayer
 - [] WebRTC multiplayer
 - [] pixi.js sprites
 

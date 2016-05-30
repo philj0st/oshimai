@@ -32,10 +32,10 @@ const init = () => {
     type: 'PLAYER_ADD',
     player: {
       //default player
-      size: {x : 20, y: 20},
       radius:10,
+      rotation: 0,
       // TODO: replace hardcoded CANVAS_SIZE
-      position: {x: 150, y:300-40},
+      position: {x: 20, y:150},
       score: 0
     }
   })
@@ -43,8 +43,8 @@ const init = () => {
     type: 'PLAYER_ADD',
     player: {
       //default player
-      size: {x : 20, y: 20},
       radius:10,
+      rotation: 0,
       // TODO: replace hardcoded CANVAS_SIZE
       position: {x: 120, y:300-40},
       score: 0
