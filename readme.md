@@ -2,6 +2,7 @@
 `git clone` and `npm install dev` then run with `npm start`
 
 #### thoughts?
+- What's better: having vector reducer called from player reducer or just importing a vector lib in player reducer?
 what is better? render on store changes or on requestAnimationFrame()? maybe on store's subscribe function?
 
 position: [15,30] vs position: {x:15, y:30} vs victor.js
@@ -24,6 +25,7 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - WebWorkers
 - victor.js *A JavaScript 2D vector maths library for Node.js and the browser.*
 - Pixi.js *2D webGL renderer with canvas fallback*
+- current: basically adding a vector the the ships movement if ship is located i a certain area.
 
 #### used ES6/ES7 Features
 - Spread Operator in Arrays and Objects

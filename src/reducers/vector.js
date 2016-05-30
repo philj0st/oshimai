@@ -11,6 +11,18 @@ const degrees2radian = deg => deg / degrees
 // what a neat ES6 usage :)
 const vectorLength = ({ x, y }) => Math.sqrt(x * x + y * y)
 
+const rotateVec = (vector, angle) => {
+  // create variables for x and y of the old state
+  let { x: xOld, y: yOld } = vector
+  // calculate x, y for the new state
+  let x = (xOld * Math.cos(angle)) - (yOld * Math.sin(angle))
+  let y = (xOld * Math.sin(angle)) + (yOld * Math.cos(angle))
+  return {
+    x,
+    y
+  }
+}
+
 // actual reducer
 const vector = (vector = {x:0, y:0}, action) => {
   switch (action.type) {
@@ -21,21 +33,13 @@ const vector = (vector = {x:0, y:0}, action) => {
         y: vector.y + action.vector.y
       }
 
-    // http://victorjs.org/#rotate
-    // Rotates the vector to a certain angle, in radians CCW from +X axis.
-    // @param action.angle - angle in radians
-    case 'VECTOR_ROTATE':
-      // create variables for x and y of the old state
-      let { x: xOld, y: yOld } = vector
+    // http://victorjs.org/#rotatebydeg
+    // Rotates the vector by a rotation angle, given in degrees CCW from +X axis.
+    // @param action.angle - angle in degrees
+    case 'VECTOR_ROTATE_BY_DEG':
       let { angle } = action
-      // calculate x, y for the new state
-      let x = (xOld * Math.cos(angle)) - (yOld * Math.sin(angle))
-      let y = (xOld * Math.sin(angle)) + (yOld * Math.cos(angle))
-      return {
-        x,
-        y
-      }
-      break;
+      return rotate(degrees2radian(vector, angle))
+
     default:
       return vector
   }

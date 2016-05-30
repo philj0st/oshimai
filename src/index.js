@@ -3,7 +3,6 @@ import createStore from './store'
 import render from './render'
 import combineReducers from './combineReducers'
 import players from './reducers/players'
-import position from './reducers/position'
 import bullets from './reducers/bullets'
 
 
@@ -57,6 +56,11 @@ const init = () => {
     store.dispatch({
       type: 'UPDATE_BULLETS'
     })
+
+    // move forward player 0
+    if (keyState['38']) {
+      
+    }
     // left and right for player 0
     if (keyState['39']) {
       movePlayer(0, {x:1, y:0})
@@ -73,7 +77,7 @@ const init = () => {
     //shoot on 'space' press
     if (keyState['32']) {
       let x = state.players[0].position.x
-      let y = state.players[0].position.y - state.players[0].size.y/2
+      let y = state.players[0].position.y
       store.dispatch({
         type: 'BULLET_ADD',
         bullet: {

@@ -1,4 +1,4 @@
-import position from './position'
+import vector from './vector'
 
 // TODO: hardcoded CANVAS_SIZE. got to find a good solution to share these constats between mpdules
 const isWithinBoundries = position => position.x >= 0 &&
@@ -16,14 +16,14 @@ const bullets = (state = [], action) => {
       .filter(b => isWithinBoundries(b.position))
       //add their position and velocity
       .map(b => {
-        let positionAction = {
-          type: 'POSITION_ADD',
+        let vectorAddAction = {
+          type: 'VECTOR_ADD',
           vector: b.velocity
         }
         return {
           ...b,
           // add position and velocity vectors
-          position: position(b.position, positionAction)
+          position: vector(b.position, vectorAddAction)
         }
       })
     default:
