@@ -1,7 +1,5 @@
 # Oshimai :octopus::anchor::boat:
-```html
-<a href="http://phil.jost.rocks"><img src="https://img.shields.io/badge/badge-present-green.svg" alt="badge present" height='20px' /></a>
-```
+![badge present](https://img.shields.io/badge/badge-present-green.svg)
 #### installing
 `git clone` and `npm install dev` then run with `npm start`
 
