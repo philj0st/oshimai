@@ -1,3 +1,7 @@
+# Oshimai :octopus::anchor::boat:
+```html
+<a href="http://phil.jost.rocks"><img src="https://img.shields.io/badge/badge-present-green.svg" alt="badge present" height='20px' /></a>
+```
 #### installing
 `git clone` and `npm install dev` then run with `npm start`
 
@@ -13,6 +17,7 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - [x] revamp player datastructure to support multiple players
 - [x] circles on canvas
 - [x] decrease momentum over time
+- [] either fake orientation laggin behind momentum one degree at a frame or implement real angular motion :boat:
 - [] have player orientation/rotation figured out. (rotate vectors before applying them)
 - [] revamp movement with rotation
 - [] use rounded values so rotateVecByDeg([1,0], 90) doesn't result in [6.123233995736766e-17, 1]. - or find another datastructure that is more performant.
@@ -29,6 +34,7 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - Pixi.js *2D webGL renderer with canvas fallback*
 - current: basically adding a vector the the ships movement if ship is located i a certain area.
 - whirlpools: fun thing to implement with vectors
+- let 2 players control 1 ship and have their device's rowing gyro/motion as control for one side of the rows
 
 #### used ES6/ES7 Features
 - Spread Operator in Arrays and Objects
