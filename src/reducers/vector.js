@@ -38,7 +38,7 @@ const vector = (vector = {x:0, y:0}, action) => {
     // @param action.angle - angle in degrees
     case 'VECTOR_ROTATE_BY_DEG':
       let { angle } = action
-      return rotate(degrees2radian(vector, angle))
+      return rotateVec(vector, degrees2radian(angle))
 
     default:
       return vector

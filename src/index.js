@@ -21,6 +21,14 @@ const setPlayerMomentum = (playerIndex, momentum) => {
   })
 }
 
+const playerRotate = (playerIndex, angle) => {
+  store.dispatch({
+    type: 'PLAYER_ROTATE',
+    angle,
+    playerIndex
+  })
+}
+
 const init = () => {
   // TODO: move to render.js ??
   let canvas = document.getElementById('canvas')
@@ -32,10 +40,11 @@ const init = () => {
     player: {
       //default player
       radius:10,
-      rotation: 0,
+      orientation: 0,
       // TODO: replace hardcoded CANVAS_SIZE
       position: {x: 20, y:150},
       momentum: {x:0, y:0},
+      angularMomentum: 0,
       score: 0
     }
   })
@@ -44,10 +53,11 @@ const init = () => {
     player: {
       //default player
       radius:10,
-      rotation: 0,
+      orientation: 0,
       // TODO: replace hardcoded CANVAS_SIZE
       position: {x: 120, y:300-40},
       momentum: {x:0, y:0},
+      angularMomentum: 0,
       score: 0
     }
   })
@@ -68,10 +78,12 @@ const init = () => {
     }
     // left and right for player 0
     if (keyState['39']) {
-      setPlayerMomentum(0, {x:1, y:0})
+      // setPlayerMomentum(0, {x:-1, y:0})
+      playerRotate(0,1)
     }
     if (keyState['37']) {
-      setPlayerMomentum(0, {x:-1, y:0})
+      // setPlayerMomentum(0, {x:1, y:0})
+      playerRotate(0,-1)
     }
     if (keyState['68']) {
       setPlayerMomentum(1, {x:1, y:0})

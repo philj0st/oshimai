@@ -1,13 +1,12 @@
 # Oshimai :octopus::anchor::boat:
-![badge present](https://img.shields.io/badge/badge-present-green.svg)
+<a href="http://recurse.com"><img src="https://cloud.githubusercontent.com/assets/2883345/11325206/336ea5f4-9150-11e5-9e90-d86ad31993d8.png" alt="made at RC" style="height:20px" /></a>
 #### installing
 `git clone` and `npm install dev` then run with `npm start`
 
-#### thoughts?
-- What's better: having vector reducer called from player reducer or just importing a vector lib in player reducer?
-- what is better: render on store changes or on requestAnimationFrame()? maybe on store's subscribe function?
-
-position: [15,30] vs position: {x:15, y:30} vs victor.js
+#### questions to my dearest source-code reader
+- what's better: having vector reducer called from player reducer or just importing a vector lib in player reducer?
+- what's better: render on store changes or on requestAnimationFrame()? maybe on store's subscribe function?
+- position: [15,30] vs position: {x:15, y:30} vs victor.js
 
 #### Roadmap
 implement multiplayer with circles on canvas then replace renderer with pixi.js sprites and keep circles as hitboxes.
@@ -15,14 +14,14 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - [x] revamp player datastructure to support multiple players
 - [x] circles on canvas
 - [x] decrease momentum over time
-- [] either fake orientation laggin behind momentum one degree at a frame or implement real angular motion :boat:
-- [] have player orientation/rotation figured out. (rotate vectors before applying them)
-- [] revamp movement with rotation
-- [] use rounded values so rotateVecByDeg([1,0], 90) doesn't result in [6.123233995736766e-17, 1]. - or find another datastructure that is more performant.
-- [] shoot sideways
+- [ ] either fake orientation laggin behind momentum one degree at a frame or implement real angular motion :boat:
+- [ ] have player orientation/rotation figured out. (rotate vectors before applying them)
+- [x] revamp movement with rotation
+- [ ] use rounded values so rotateVecByDeg([1,0], 90) doesn't result in [6.123233995736766e-17, 1]. - or find another datastructure that is more performant.
+- [ ] shoot sideways
 - [x] local multiplayer
-- [] WebRTC multiplayer
-- [] pixi.js sprites
+- [ ] WebRTC multiplayer
+- [ ] pixi.js sprites
 
 #### ideas for future implementations
 - WebRTC (polyfill WebSockets)
