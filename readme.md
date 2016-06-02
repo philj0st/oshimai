@@ -19,6 +19,7 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - [x] revamp movement with rotation
 - [ ] use rounded values so rotateVecByDeg([1,0], 90) doesn't result in [6.123233995736766e-17, 1]. - or find another datastructure that is more performant.
 - [ ] shoot sideways
+- [ ] cooldowns for rowing and shooting (decrement CD every frame and having a .filter in UPDATE_PLAYER)
 - [x] local multiplayer
 - [ ] WebRTC multiplayer
 - [ ] pixi.js sprites
@@ -32,6 +33,7 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - current: basically adding a vector the the ships movement if ship is located i a certain area.
 - whirlpools: fun thing to implement with vectors
 - let 2 players control 1 ship and have their device's rowing gyro/motion as control for one side of the rows
+- have different constants for momentum over time reduction per ship (also for angular momentum)
 
 #### used ES6/ES7 Features
 - Spread Operator in Arrays and Objects

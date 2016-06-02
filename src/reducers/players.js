@@ -1,10 +1,12 @@
-// TODO: refactor into 2 reducers player and players and then extract array slicing to a function
 import vector from './vector'
 import player from './player'
 
 // import vector library or have actions and states sent to reducer? -> Dan the man sais different reducers can handle different part of the state tree and reducers can call other reducers within.
+// but vectors are not part of the state tree?
 // https://egghead.io/lessons/javascript-redux-reducer-composition-with-arrays
+// TODO: write blog post about reducers operation on different parts of the state tree
 // TODO: so no library import, refactor back to the vector reducer
+
 const addVec = ( { x:x1, y:y1 }, { x:x2, y:y2 } ) => ({
   x: x1 + x2,
   y: y1 + y2
@@ -55,22 +57,8 @@ const players = (players = [], action) => {
 
     case 'PLAYER_ADD_MOMENTUM':
       let { playerIndex, momentum } = action
-      // add momentum to the already existing one
-      let resultingMomentum = addVec(players[playerIndex].momentum, momentum)
       // get a new state of a position
-      return [
-        // spread over the left part of the array
-        ...players.slice(0, playerIndex),
-        // specify the new player Object
-        {
-          // copy all the properties from the previous state
-          ...players[playerIndex],
-          // then override the momentum
-          momentum: resultingMomentum
-        },
-        // spread over the right part of the array
-        ...players.slice(playerIndex +1)
-      ]
+      return replaceItemAt(players, playerIndex, player(players[playerIndex], action))
 
     case 'PLAYER_ROTATE':
       // return a new array with the player at index's rotation handled by the player reducer
