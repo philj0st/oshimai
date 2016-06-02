@@ -4,7 +4,7 @@ import render from './render'
 import combineReducers from './combineReducers'
 import players from './reducers/players'
 import bullets from './reducers/bullets'
-
+import { normalize as normaizeVector, rotateByDeg as rotateVectorByDeg } from './lib/vector'
 
 let rootReducer = combineReducers({
   players,
@@ -95,13 +95,13 @@ const init = () => {
     //shoot on 'space' press
     if (keyState['32']){
       // TODO: refactor: normalize vector first if players can have different momentum
-      let { position, orientation } = state.players[0]
-      
+      let { position, orientation, momentum } = state.players[0]
+
       store.dispatch({
         type: 'BULLET_ADD',
         bullet: {
           position,
-          momentum,
+          momentum: rotateVectorByDeg({x:0,y:1}, orientation),
           size: {x:4, y:8},
           playerIndex: 0
         }

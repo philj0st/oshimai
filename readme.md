@@ -41,7 +41,7 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - Spread Operator in Arrays and Objects
 - Object Destructuring
 - Object Literal Property Value Shorthand
-- Modules (only import)
+- Modules
 - Arrow Functions
 
 #### Performance

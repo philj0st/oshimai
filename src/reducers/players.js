@@ -1,21 +1,9 @@
-import vector from './vector'
+import { add, rotateByDeg, angle, length, multiply as multiplyVectors } from '../lib/vector'
 import player from './player'
 
 // import vector library or have actions and states sent to reducer? -> Dan the man sais different reducers can handle different part of the state tree and reducers can call other reducers within.
 // but vectors are not part of the state tree?
 // https://egghead.io/lessons/javascript-redux-reducer-composition-with-arrays
-// TODO: write blog post about reducers operation on different parts of the state tree
-// TODO: so no library import, refactor back to the vector reducer
-
-const addVec = ( { x:x1, y:y1 }, { x:x2, y:y2 } ) => ({
-  x: x1 + x2,
-  y: y1 + y2
-})
-
-const multiplyVec = ( { x:x1, y:y1 }, { x:x2, y:y2 } ) => ({
-  x: x1 * x2,
-  y: y1 * y2
-})
 
 const vectorLength = ({ x, y }) => Math.sqrt(x * x + y * y)
 
@@ -40,11 +28,11 @@ const players = (players = [], action) => {
     //return a new array with player who had their position and momentum added
       return players.map(p => {
         // adjust the momentum towards the direction the player is facing
-        let directedMomentum = vector(p.momentum, {type: 'VECTOR_ROTATE_BY_DEG', angle: p.orientation})
+        let directedMomentum = rotateByDeg(p.momentum, p.orientation)
         // add the momentum to the position
-        let position = addVec(p.position, directedMomentum)
+        let position = add(p.position, directedMomentum)
         // decrease the momentum over time
-        let momentum = (vectorLength(p.momentum) > 0.1)? multiplyVec(p.momentum, {x:0.9, y: 0.9}) : {x:0, y:0}
+        let momentum = (length(p.momentum) > 0.1)? multiplyVectors(p.momentum, {x:0.9, y: 0.9}) : {x:0, y:0}
         // TODO: decrease the angularMomentum over time
         return {
           ...p,

@@ -1,11 +1,6 @@
+import { add as addVectors } from '../lib/vector'
+
 // reducer handling the state if a single player
-
-// TODO: decide on vector reducer or lib
-const addVec = ( { x:x1, y:y1 }, { x:x2, y:y2 } ) => ({
-  x: x1 + x2,
-  y: y1 + y2
-})
-
 const player = (player = {}, action) => {
   switch (action.type) {
     case 'PLAYER_ROTATE':
@@ -21,7 +16,7 @@ const player = (player = {}, action) => {
         // copy all the properties from the previous state
         ...player,
         // add momentum to the already existing one
-        momentum: addVec(player.momentum, momentum)
+        momentum: addVectors(player.momentum, momentum)
       }
   }
 }
