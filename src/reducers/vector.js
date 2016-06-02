@@ -9,7 +9,7 @@ const radian2degrees = rad => rad * degrees
 const degrees2radian = deg => deg / degrees
 
 // what a neat ES6 usage :)
-const vectorLength = ({ x, y }) => Math.sqrt(x * x + y * y)
+const length = ({ x, y }) => Math.sqrt(x * x + y * y)
 
 const rotateVec = (vector, angle) => {
   // create variables for x and y of the old state
@@ -20,6 +20,27 @@ const rotateVec = (vector, angle) => {
   return {
     x,
     y
+  }
+}
+
+const divide = ( { x:x1, y:y1 }, { x:x2, y:y2 } ) => ({
+  x: x1 / x2,
+  y: y1 / y2
+})
+
+export const normalize = vector => {
+  let length = length(vector)
+  let { x:x1, y:y1 } = vector
+  if (length === 0) {
+    return {
+      x: 1,
+      y: 0
+    }
+  }else {
+    return {
+      x: x1 / length,
+      y: y1 / length
+    }
   }
 }
 

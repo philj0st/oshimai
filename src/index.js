@@ -48,6 +48,7 @@ const init = () => {
       score: 0
     }
   })
+
   store.dispatch({
     type: 'PLAYER_ADD',
     player: {
@@ -92,14 +93,15 @@ const init = () => {
       setPlayerMomentum(1, {x:-1, y:0})
     }
     //shoot on 'space' press
-    if (keyState['32']) {
-      let x = state.players[0].position.x
-      let y = state.players[0].position.y
+    if (keyState['32']){
+      // TODO: refactor: normalize vector first if players can have different momentum
+      let { position, orientation } = state.players[0]
+      
       store.dispatch({
         type: 'BULLET_ADD',
         bullet: {
-          position: {x, y},
-          momentum: {x:0, y:-1},
+          position,
+          momentum,
           size: {x:4, y:8},
           playerIndex: 0
         }

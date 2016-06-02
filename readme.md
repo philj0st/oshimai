@@ -1,5 +1,5 @@
 # Oshimai :octopus::anchor::boat:
-<a href="http://recurse.com"><img src="https://cloud.githubusercontent.com/assets/2883345/11325206/336ea5f4-9150-11e5-9e90-d86ad31993d8.png" alt="made at RC" style="height:20px" /></a>
+<a href="http://recurse.com"><img src="https://cloud.githubusercontent.com/assets/2883345/11325206/336ea5f4-9150-11e5-9e90-d86ad31993d8.png" height="20px" /></a>
 #### installing
 `git clone` and `npm install dev` then run with `npm start`
 
@@ -7,6 +7,7 @@
 - what's better: having vector reducer called from player reducer or just importing a vector lib in player reducer?
 - what's better: render on store changes or on requestAnimationFrame()? maybe on store's subscribe function?
 - position: [15,30] vs position: {x:15, y:30} vs victor.js
+- how to access data from another node of the state tree? ex. spawn bullet at players location
 
 #### Roadmap
 implement multiplayer with circles on canvas then replace renderer with pixi.js sprites and keep circles as hitboxes.
@@ -17,6 +18,7 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - [ ] either fake orientation laggin behind momentum one degree at a frame or implement real angular motion :boat:
 - [ ] have player orientation/rotation figured out. (rotate vectors before applying them)
 - [x] revamp movement with rotation
+- [ ] refactor createStore to use the redux library to be able to use Dan's DevTools :raised_hands:
 - [ ] use rounded values so rotateVecByDeg([1,0], 90) doesn't result in [6.123233995736766e-17, 1]. - or find another datastructure that is more performant.
 - [ ] shoot sideways
 - [ ] cooldowns for rowing and shooting (decrement CD every frame and having a .filter in UPDATE_PLAYER)
