@@ -6,12 +6,13 @@ const isWithinBoundries = position => position.x >= 0 &&
                                       position.y >= 0 &&
                                       position.y <= 300
 
-const bullets = (state = [], action) => {
+const bullets = (bullets = [], action) => {
+  console.log(bullets.length)
   switch (action.type) {
     case 'BULLET_ADD':
-      return [...state, action.bullet]
+      return [...bullets, action.bullet]
     case 'UPDATE_BULLETS':
-      return state
+      return bullets
       //only return bullets which havent left the canvas
       .filter(b => isWithinBoundries(b.position))
       //add their position and momentum
@@ -21,7 +22,7 @@ const bullets = (state = [], action) => {
           position: addVectors(b.position, b.momentum)
         }))
     default:
-    return state
+    return bullets
   }
 }
 

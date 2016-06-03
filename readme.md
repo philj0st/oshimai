@@ -18,7 +18,7 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - [ ] either fake orientation laggin behind momentum one degree at a frame or implement real angular motion :boat:
 - [ ] have player orientation/rotation figured out. (rotate vectors before applying them)
 - [x] revamp movement with rotation
-- [ ] refactor createStore to use the redux library to be able to use Dan's DevTools :raised_hands:
+- [x] refactor createStore to use the redux library to be able to use Dan's DevTools :raised_hands:
 - [ ] use rounded values so rotateVecByDeg([1,0], 90) doesn't result in [6.123233995736766e-17, 1]. - or find another datastructure that is more performant.
 - [ ] shoot sideways
 - [ ] cooldowns for rowing and shooting (decrement CD every frame and having a .filter in UPDATE_PLAYER)
@@ -30,8 +30,9 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - WebRTC (polyfill WebSockets)
 - GamepadAPI
 - WebWorkers
-- victor.js *A JavaScript 2D vector maths library for Node.js and the browser.*
-- Pixi.js *2D webGL renderer with canvas fallback*
+- VictorJS *A JavaScript 2D vector maths library for Node.js and the browser.*
+- PixiJS *2D webGL renderer with canvas fallback*
+- ImmutableJS for Structural Sharing
 - current: basically adding a vector the the ships movement if ship is located i a certain area.
 - whirlpools: fun thing to implement with vectors
 - let 2 players control 1 ship and have their device's rowing gyro/motion as control for one side of the rows

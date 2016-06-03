@@ -1,17 +1,12 @@
 import expect from 'expect'
-import createStore from './store'
+import { createStore } from 'redux'
 import render from './render'
 import combineReducers from './combineReducers'
 import players from './reducers/players'
 import bullets from './reducers/bullets'
 import { normalize as normaizeVector, rotateByDeg as rotateVectorByDeg } from './lib/vector'
 
-let rootReducer = combineReducers({
-  players,
-  bullets
-})
 
-var store = createStore(rootReducer)
 
 const setPlayerMomentum = (playerIndex, momentum) => {
   store.dispatch({
@@ -29,11 +24,27 @@ const playerRotate = (playerIndex, angle) => {
   })
 }
 
+var store
+
 const init = () => {
   // TODO: move to render.js ??
   let canvas = document.getElementById('canvas')
   let ctx = canvas.getContext('2d')
   let size = { x: canvas.width, y: canvas.height}
+
+  var rootReducer = combineReducers({
+    players,
+    bullets
+  })
+
+  const configureStore = initialState => {
+    const store = createStore(rootReducer, initialState,
+      window.devToolsExtension && window.devToolsExtension()
+    )
+    return store
+  }
+
+  store = configureStore(undefined)
 
   store.dispatch({
     type: 'PLAYER_ADD',
@@ -112,10 +123,13 @@ const init = () => {
   let tick = () => {
     let state = store.getState()
     update(state)
+    if (frameCount++ < 500) {
+    }else {
+    }
     render(ctx, state, size)
     requestAnimationFrame(tick)
   }
-
+  var frameCount = 0
   var keyState = {};
   window.addEventListener('keydown', e => keyState[e.keyCode] = true)
   window.addEventListener('keyup', e => keyState[e.keyCode] = false)
