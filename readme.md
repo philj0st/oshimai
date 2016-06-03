@@ -1,5 +1,11 @@
+<center>
 # Oshimai :octopus::anchor::boat:
+</center>
 <a href="http://recurse.com"><img src="https://cloud.githubusercontent.com/assets/2883345/11325206/336ea5f4-9150-11e5-9e90-d86ad31993d8.png" height="20px" /></a>
+
+<img src="https://i.imgur.com/f2IHEvS.gif" alt="redux-devtools" /></br>
+
+Since my reducers are pure functions, the same sequence of actions dispatched to the same initial game state will always result in the exact same game state. This allows me to time travel between every possible past state of my game thanks to the [redux-devtools](https://github.com/gaearon/redux-devtools)
 #### installing
 `git clone` and `npm install dev` then run with `npm start`
 
