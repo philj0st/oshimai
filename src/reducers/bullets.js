@@ -7,7 +7,6 @@ const isWithinBoundries = position => position.x >= 0 &&
                                       position.y <= 300
 
 const bullets = (bullets = [], action) => {
-  console.log(bullets.length)
   switch (action.type) {
     case 'BULLET_ADD':
       return [...bullets, action.bullet]

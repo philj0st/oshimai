@@ -1,4 +1,3 @@
-import expect from 'expect'
 import { createStore } from 'redux'
 import render from './render'
 import combineReducers from './combineReducers'
@@ -51,7 +50,7 @@ const init = () => {
     player: {
       //default player
       radius:10,
-      orientation: 0,
+      orientation: -90,
       // TODO: replace hardcoded CANVAS_SIZE
       position: {x: 20, y:150},
       momentum: {x:0, y:0},
@@ -65,7 +64,7 @@ const init = () => {
     player: {
       //default player
       radius:10,
-      orientation: 0,
+      orientation: 90,
       // TODO: replace hardcoded CANVAS_SIZE
       position: {x: 120, y:300-40},
       momentum: {x:0, y:0},
@@ -84,9 +83,13 @@ const init = () => {
       type: 'PLAYERS_UPDATE'
     })
 
+    // TODO: fix player movement
     // move forward player 0
     if (keyState['38']) {
       setPlayerMomentum(0, {x:0, y:1})
+    }
+    if (keyState['87']) {
+      setPlayerMomentum(1, {x:0, y:1})
     }
     // left and right for player 0
     if (keyState['39']) {
@@ -98,10 +101,10 @@ const init = () => {
       playerRotate(0,-1)
     }
     if (keyState['68']) {
-      setPlayerMomentum(1, {x:1, y:0})
+      playerRotate(1,1)
     }
     if (keyState['65']) {
-      setPlayerMomentum(1, {x:-1, y:0})
+      playerRotate(1,-1)
     }
     //shoot on 'space' press
     if (keyState['32']){
@@ -118,12 +121,27 @@ const init = () => {
         }
       })
     }
+    //shoot on 'space' press
+    if (keyState['83']){
+      // TODO: refactor: normalize vector first if players can have different momentum
+      let { position, orientation, momentum } = state.players[1]
+
+      store.dispatch({
+        type: 'BULLET_ADD',
+        bullet: {
+          position,
+          momentum: rotateVectorByDeg({x:0,y:1}, orientation),
+          size: {x:4, y:8},
+          playerIndex: 0
+        }
+      })
+    }
   }
 
   let tick = () => {
     let state = store.getState()
-    update(state)
     if (frameCount++ < 500) {
+      update(state)
     }else {
     }
     render(ctx, state, size)

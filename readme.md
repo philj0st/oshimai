@@ -21,6 +21,7 @@ implement multiplayer with circles on canvas then replace renderer with pixi.js 
 - [x] revamp player datastructure to support multiple players
 - [x] circles on canvas
 - [x] decrease momentum over time
+- [ ] refactor to use reduxes `configureStore()` to set up the initial State (get rid of the ugly init action dispatches)
 - [ ] either fake orientation laggin behind momentum one degree at a frame or implement real angular motion :boat:
 - [ ] have player orientation/rotation figured out. (rotate vectors before applying them)
 - [x] revamp movement with rotation
