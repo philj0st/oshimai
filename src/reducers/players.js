@@ -25,21 +25,28 @@ const players = (players = [], action) => {
     // add players momentum to its position
     case 'PLAYERS_UPDATE':
     // TODO: check for collision in here filter if next state is not collioding. could also happen during rowing force application
+    // Collision detection might be easier if PLAYER and BULLET updates happen in the same reduction (that might be in the rootReducer?)
     //return a new array with player who had their position and momentum added
       return players.map(p => {
-        // adjust the momentum towards the direction the player is facing
-        let directedMomentum = rotateByDeg(p.momentum, p.orientation)
-        // add the momentum to the position
-        let position = add(p.position, directedMomentum)
-        // decrease the momentum over time
-        let momentum = (length(p.momentum) > 0.1)? multiplyVectors(p.momentum, {x:0.9, y: 0.9}) : {x:0, y:0}
-        // TODO: decrease the angularMomentum over time
-        return {
-          ...p,
-          // add position and momentum vectors
-          position,
-          // then decrease momentum if its bigger than 0.1, else set it to [0,0]
-          momentum
+        // only update a players momentum and position if he has momentum
+        if (p.momentum.x || p.momentum.y) {
+          // adjust the momentum towards the direction the player is facing
+          let directedMomentum = rotateByDeg(p.momentum, p.orientation)
+          // add the momentum to the position
+          let position = add(p.position, directedMomentum)
+          // decrease the momentum over time
+          let momentum = (length(p.momentum) > 0.1)? multiplyVectors(p.momentum, {x:0.9, y: 0.9}) : {x:0, y:0}
+          // TODO: decrease the angularMomentum over time
+          return {
+            ...p,
+            // add position and momentum vectors
+            position,
+            // then decrease momentum if its bigger than 0.1, else set it to [0,0]
+            momentum
+          }
+          // otherwise leave the player as it was
+        }else {
+          return p
         }
       })
 

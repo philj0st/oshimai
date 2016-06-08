@@ -75,13 +75,19 @@ const init = () => {
 
   let update = (state) => {
     //game logic like user input goes here
-    //update all positions of bullets
-    store.dispatch({
-      type: 'UPDATE_BULLETS'
-    })
-    store.dispatch({
-      type: 'PLAYERS_UPDATE'
-    })
+
+    //if there are bullets update all positions of bullets
+    if (state.bullets.length) {
+      store.dispatch({
+        type: 'UPDATE_BULLETS'
+      })
+    }
+    // only update players if any of them has momentum
+    if (state.players.filter(p => p.momentum.x || p.momentum.y).length) {
+      store.dispatch({
+        type: 'PLAYERS_UPDATE'
+      })
+    }
 
     // TODO: fix player movement
     // move forward player 0
@@ -137,10 +143,10 @@ const init = () => {
       })
     }
   }
-
+  // game loop
   let tick = () => {
     let state = store.getState()
-    if (frameCount++ < 500) {
+    if (frameCount++ < 300) {
       update(state)
     }else {
     }
