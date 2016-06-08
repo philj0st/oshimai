@@ -1,4 +1,5 @@
 import { createStore } from 'redux'
+import { persistState } from 'redux-devtools'
 import render from './render'
 import combineReducers from './combineReducers'
 import players from './reducers/players'
@@ -43,34 +44,23 @@ const init = () => {
     return store
   }
 
-  store = configureStore(undefined)
-
-  store.dispatch({
-    type: 'PLAYER_ADD',
-    player: {
-      //default player
+  // initial State defined upon store creation
+  store = configureStore({
+    players: [{
       radius:10,
       orientation: -90,
-      // TODO: replace hardcoded CANVAS_SIZE
       position: {x: 20, y:150},
       momentum: {x:0, y:0},
       angularMomentum: 0,
       score: 0
-    }
-  })
-
-  store.dispatch({
-    type: 'PLAYER_ADD',
-    player: {
-      //default player
+    },{
       radius:10,
       orientation: 90,
-      // TODO: replace hardcoded CANVAS_SIZE
       position: {x: 120, y:300-40},
       momentum: {x:0, y:0},
       angularMomentum: 0,
       score: 0
-    }
+    }]
   })
 
   let update = (state) => {
