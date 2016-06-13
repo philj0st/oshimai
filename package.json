@@ -4,7 +4,7 @@
   "description": "",
   "main": "move.js",
   "scripts": {
-    "start": "webpack-dev-server && chromium-browser http://localhost:8080",
+    "start": "webpack-dev-server --hot && chromium-browser http://localhost:8080",
     "test": "node test/*"
   },
   "author": "",

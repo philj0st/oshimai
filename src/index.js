@@ -1,7 +1,7 @@
-import { createStore } from 'redux'
+import { createStore, compose } from 'redux'
 import { persistState } from 'redux-devtools'
+import configureStore from './store/configureStore'
 import render from './render'
-import combineReducers from './combineReducers'
 import players from './reducers/players'
 import bullets from './reducers/bullets'
 import { normalize as normaizeVector, rotateByDeg as rotateVectorByDeg } from './lib/vector'
@@ -31,18 +31,6 @@ const init = () => {
   let canvas = document.getElementById('canvas')
   let ctx = canvas.getContext('2d')
   let size = { x: canvas.width, y: canvas.height}
-
-  var rootReducer = combineReducers({
-    players,
-    bullets
-  })
-
-  const configureStore = initialState => {
-    const store = createStore(rootReducer, initialState,
-      window.devToolsExtension && window.devToolsExtension()
-    )
-    return store
-  }
 
   // initial State defined upon store creation
   store = configureStore({
@@ -136,8 +124,8 @@ const init = () => {
   // game loop
   let tick = () => {
     let state = store.getState()
+    update(state)
     if (frameCount++ < 300) {
-      update(state)
     }else {
     }
     render(ctx, state, size)

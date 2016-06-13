@@ -10,6 +10,7 @@ const bullets = (bullets = [], action) => {
   switch (action.type) {
     case 'BULLET_ADD':
       return [...bullets, action.bullet]
+      // return bullets
     case 'UPDATE_BULLETS':
       return bullets
       //only return bullets which havent left the canvas
