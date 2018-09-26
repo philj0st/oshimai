@@ -9,7 +9,7 @@ Since my reducers are pure functions, the same sequence of actions dispatched to
 #### installing
 `git clone` and `npm install dev` then run with `npm start`
 
-#### questions to my dearest source-code reader
+#### questions
 - what's better: having vector reducer called from player reducer or just importing a vector lib in player reducer?
 - what's better: render on store changes or on requestAnimationFrame()? maybe on store's subscribe function?
 - position: [15,30] vs position: {x:15, y:30} vs victor.js
